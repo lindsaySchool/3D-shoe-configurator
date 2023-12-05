@@ -51,7 +51,17 @@ directionalLight.position.set(1, 1, 2);
 directionalLight.castShadow = true;
 scene.add(directionalLight);
 
+window.addEventListener('resize', resizeCanvas);
 
+function resizeCanvas() {
+  const canvas = document.querySelector('canvas');
+  const width = canvas.clientWidth;
+  const height = width*0.75; // Vervang 0.75 door de gewenste aspectratio
+  canvas.style.height = `${height}px`;
+}
+
+// Roep de functie een keer aan bij het laden van de pagina om de initiële hoogte in te stellen
+resizeCanvas();
 function animate() {
 	requestAnimationFrame( animate );
   controls.update();

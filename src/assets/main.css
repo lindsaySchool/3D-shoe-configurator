@@ -1,3 +1,8 @@
 body{
   margin: 0;
 }
+
+canvas{
+  max-width: 64vw;
+  margin-top: -8vw;
+}
