@@ -1,6 +1,6 @@
 <script setup>
 //import Shoe.vue from './components/Shoe.vue'
-import  Shoe from './components/Shoe.vue'
+import  Shoe from './components/shoe.vue'
 </script>
 
 <template>
