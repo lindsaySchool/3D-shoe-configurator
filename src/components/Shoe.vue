@@ -32,7 +32,7 @@ loader.load('/models/shoe.glb', function(gltf){
 
 //add plane
 const planeGeometry = new THREE.PlaneGeometry( 5, 5, 32 );
-const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+const planeMaterial = new THREE.MeshBasicMaterial( {color: 0x69ff47, side: THREE.DoubleSide} );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = 1.5;
 scene.add( plane );
