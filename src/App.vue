@@ -1,6 +1,6 @@
 <script setup>
 //import components
-import Navigation from './components/navigation.vue'
+import Navigation from './components/Navigation.vue'
 import  Shoe from './components/shoe.vue'
 import Selection from './components/Selection.vue'
 

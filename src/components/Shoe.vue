@@ -26,6 +26,29 @@ loader.load('/models/shoe.glb', function(gltf){
   //make shoe bigger
   gltf.scene.scale.set(16, 16, 16);
   scene.add(gltf.scene);
+  // Traverse the model and log each child
+  gltf.scene.traverse(function (child) {
+      if (child.isMesh) {
+        console.log(child.name);
+        if (child.name === 'sole_top') {
+          child.material.color.set(0xE90866);
+        }
+        if (child.name === 'sole_bottom') {
+          child.material.color.set(0x4F4F4F);
+        }
+        if (child.name === 'outside_1') {
+          child.material.color.set(0x69ff47);
+        }
+        if (child.name === 'inside') {
+          child.material.color.set(0x000ff0);
+        }
+        if (child.name === 'laces') {
+          child.material.color.set(0xDFEB57);
+        }
+
+      }
+    });
+
 }, undefined, function(error){
   console.error(error);
 });
