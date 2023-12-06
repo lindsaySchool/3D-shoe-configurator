@@ -1,3 +1,9 @@
 body{
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+canvas{
+  max-width: 64vw;
+  margin-top: -32vw;
 }

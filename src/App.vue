@@ -1,20 +1,56 @@
 <script setup>
-//import Shoe.vue from './components/Shoe.vue'
+//import components
+import Navigation from './components/Navigation.vue'
 import  Shoe from './components/shoe.vue'
+import Selection from './components/Selection.vue'
+
 </script>
 
 <template>
   <header>
-    <h1>Shoe configurator</h1>
+    <Navigation />
   </header>
-  <main>
-    <div>
+  <main class="moderator">
+    <div class="moderator__model">
       <Shoe />
+    </div>
+    <div class="moderator__form">
+      <Selection />
     </div>
   </main>
 </template>
 
 <style scoped>
+.moderator[data-v-7a7a37b1] {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
 
+.moderator__model {
+  flex: 0 0 64%;
+}
+
+.moderator__form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .moderator {
+    flex-direction: column;
+  }
+
+  .moderator__model, .moderator__form {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
  
 </style>

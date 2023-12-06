@@ -26,13 +26,36 @@ loader.load('/models/shoe.glb', function(gltf){
   //make shoe bigger
   gltf.scene.scale.set(16, 16, 16);
   scene.add(gltf.scene);
+  // Traverse the model and log each child
+  gltf.scene.traverse(function (child) {
+      if (child.isMesh) {
+        console.log(child.name);
+        if (child.name === 'sole_top') {
+          child.material.color.set(0xE90866);
+        }
+        if (child.name === 'sole_bottom') {
+          child.material.color.set(0x4F4F4F);
+        }
+        if (child.name === 'outside_1') {
+          child.material.color.set(0x69ff47);
+        }
+        if (child.name === 'inside') {
+          child.material.color.set(0x000ff0);
+        }
+        if (child.name === 'laces') {
+          child.material.color.set(0xDFEB57);
+        }
+
+      }
+    });
+
 }, undefined, function(error){
   console.error(error);
 });
 
 //add plane
 const planeGeometry = new THREE.PlaneGeometry( 5, 5, 32 );
-const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+const planeMaterial = new THREE.MeshBasicMaterial( {color: 0x69ff47, side: THREE.DoubleSide} );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = 1.5;
 scene.add( plane );
@@ -51,7 +74,17 @@ directionalLight.position.set(1, 1, 2);
 directionalLight.castShadow = true;
 scene.add(directionalLight);
 
+window.addEventListener('resize', resizeCanvas);
 
+function resizeCanvas() {
+  const canvas = document.querySelector('canvas');
+  const width = canvas.clientWidth;
+  const height = width*0.75; // Vervang 0.75 door de gewenste aspectratio
+  canvas.style.height = `${height}px`;
+}
+
+// Roep de functie een keer aan bij het laden van de pagina om de initiële hoogte in te stellen
+resizeCanvas();
 function animate() {
 	requestAnimationFrame( animate );
   controls.update();
