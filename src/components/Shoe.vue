@@ -23,10 +23,10 @@ onMounted(()=>{
   //add public models shoe.glb
 const loader = new GLTFLoader();
 loader.load('/models/shoe.glb', function(gltf){
-  gltf.scene.position.set(-1/2, 1/2, 1/2);
-  gltf.scene.rotation.y = 1;
+  gltf.scene.position.set(-0.4, 0.4, 1);
+  gltf.scene.rotation.y = 1.5;
   //make shoe bigger
-  gltf.scene.scale.set(16, 16, 16);
+  gltf.scene.scale.set(8, 7, 10);
   scene.add(gltf.scene);
   // Traverse the model and log each child
   gltf.scene.traverse(function (child) {
@@ -56,15 +56,15 @@ loader.load('/models/shoe.glb', function(gltf){
 });
 
 //add plane
-const planeGeometry = new THREE.PlaneGeometry( 5, 5, 32 );
+const planeGeometry = new THREE.PlaneGeometry( 100, 100, 32 );
 const planeMaterial = new THREE.MeshBasicMaterial( {color: 0x69ff47, side: THREE.DoubleSide} );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.rotation.x = 1.5;
 scene.add( plane );
 
 
-camera.position.z = 5;
-camera.position.y = 3;
+camera.position.z = 3;
+camera.position.y = 1;
 
 //add ambientlight
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -83,6 +83,7 @@ function animate() {
 }
 
 animate();
+
 window.addEventListener('resize', () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
