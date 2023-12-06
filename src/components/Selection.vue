@@ -47,12 +47,12 @@ import { ref, onMounted } from 'vue';
         </div>
     </div> 
     <div class="navigation_buttons">
-        <button>
+        <a class="navigation_buttons-back">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.65 18L18.85 29.2L16 32L0 16L16 0L18.85 2.8L7.65 14H32V18H7.65Z" fill="#C7C7C7"/>
           </svg>
-        </button>
-        <button>Save</button>
+        </a>
+        <a class="navigation_buttons-save">Save</a>
     </div>
 </template>
 
@@ -118,5 +118,20 @@ import { ref, onMounted } from 'vue';
 }
 .color_type__selection .color-purple{
   background-color: #8B16E7;
+}
+.navigation_buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 60px;
+}
+.navigation_buttons-save{
+  background-color: #1C1B1F;
+  color: #fff;
+  padding: 18px 93px;
+  text-decoration: none;
+  text-transform: uppercase;
+
 }
 </style>
