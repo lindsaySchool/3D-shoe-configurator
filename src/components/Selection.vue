@@ -31,19 +31,19 @@ import { ref, onMounted } from 'vue';
           </div>
         </div>
     </div>
-    <div class="color_type">
-        <h3>Color</h3>
-        <div class="color">
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
-          <div class="color_white">white</div>
+    <div class="moderator__color_type">
+        <h3 class="color_type__title">Color</h3>
+        <div class="color_type__selection">
+          <div class="color-white"></div>
+          <div class="color-grey"></div>
+          <div class="color-lime"></div>
+          <div class="color-black"></div>
+          <div class="color-pink"></div>
+          <div class="color-yellow"></div>
+          <div class="color-red"></div>
+          <div class="color-orange"></div>
+          <div class="color-blue"></div>
+          <div class="color-purple"></div>
         </div>
     </div> 
     <div class="navigation_buttons">
@@ -63,7 +63,8 @@ import { ref, onMounted } from 'vue';
 }
 
 .moderator__shoe-type h2,
-.moderator__material-type h3 {
+.moderator__material-type h3,
+.moderator__color_type h3 {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #000;
@@ -73,5 +74,49 @@ import { ref, onMounted } from 'vue';
 .moderator__material-type div {
   margin-bottom: 5px;
   color: #333;
+}
+
+.color_type__selection{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  max-width: 20em;
+}
+.color_type__selection div{
+  width: 40px;
+  height: 40px;
+}
+.color_type__selection .color-white{
+  border: 1px solid #333;
+  background-color: #fff;
+}
+.color_type__selection .color-grey{
+  background-color: #D9D9D9;
+}
+.color_type__selection .color-lime{
+  background-color: #69FF47;
+}
+.color_type__selection .color-black{
+  background-color: #1C1B1F;
+}
+.color_type__selection .color-pink{
+  background-color: #FF00E5;
+}
+.color_type__selection .color-yellow{
+  background-color: #EBFF00;
+}
+.color_type__selection .color-red{
+  background-color: #FF1F1F;
+}
+.color_type__selection .color-orange{
+  background-color: #FFD84F;
+}
+.color_type__selection .color-blue{
+  background-color: #0019FF;
+}
+.color_type__selection .color-purple{
+  background-color: #8B16E7;
 }
 </style>
