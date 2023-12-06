@@ -6,13 +6,15 @@ import { ref, onMounted } from 'vue';
 
 <template>
     <div class="moderator__shoe-type">
-        <h2>AIR REV. NITRO S TRIPLE WHITE</h2>
-        <div>inside</div>
-        <div>laces</div>
-        <div>outside_01</div>
-        <div>outside_02/3</div>
-        <div>sole_top</div>
-        <div>sole_bottom</div>
+        <h2 class="moderator__shoe-type__title">AIR REV. NITRO S TRIPLE WHITE</h2>
+        <div class="moderator__shoe-type__part">
+          <div>inside</div>
+          <div>laces</div>
+          <div>outside_01</div>
+          <div>outside_02/3</div>
+          <div>sole_top</div>
+          <div>sole_bottom</div>
+        </div>
     </div>
     <div class="moderator__material-type">
         <h3>Material</h3>
@@ -61,7 +63,48 @@ import { ref, onMounted } from 'vue';
 .moderator__material-type {
   width: 100%;
 }
-
+.material{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.material .material_leather, 
+.material .material_plastic, 
+.material .material_rubber{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #D9D9D9;
+  padding: 8px;
+}
+.material .material_leather div, 
+.material .material_plastic div, 
+.material .material_rubber div{
+  margin-bottom: 0;
+}
+.material .material_leather__image, 
+.material .material_plastic__image, 
+.material .material_rubber__image{
+  width: 20px;
+  height: 20px;
+}
+.material .material_leather__image{
+  background-color: #D9E497;
+}
+.material .material_plastic__image{
+  background-color: #449BA0;
+}
+.material .material_rubber__image{
+  background-color: #B63A3A;
+}
+.material .material_leather__name,
+.material .material_plastic__name,
+.material .material_rubber__name{
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #000;
+}
 .moderator__shoe-type h2,
 .moderator__material-type h3,
 .moderator__color_type h3 {
