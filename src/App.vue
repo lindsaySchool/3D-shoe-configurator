@@ -21,10 +21,13 @@ import Selection from './components/Selection.vue'
 </template>
 
 <style scoped>
-.moderator {
+.moderator[data-v-7a7a37b1] {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 
 .moderator__model {
@@ -33,6 +36,10 @@ import Selection from './components/Selection.vue'
 
 .moderator__form {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 @media (max-width: 768px) {

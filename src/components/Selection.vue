@@ -5,7 +5,6 @@ import { ref, onMounted } from 'vue';
 </script>
 
 <template>
-  <main class="moderator">
     <div class="moderator__shoe-type">
         <h2>AIR REV. NITRO S TRIPLE WHITE</h2>
         <div>inside</div>
@@ -55,20 +54,10 @@ import { ref, onMounted } from 'vue';
         </button>
         <button>Save</button>
     </div>
-  </main>
 </template>
 
 <style scoped>
- .moderator {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 20px;
-  background-color: #fff;
-}
-
-.moderator__shoe-type,
+ .moderator__shoe-type,
 .moderator__material-type {
   width: 100%;
 }
