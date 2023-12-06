@@ -118,6 +118,19 @@ import { ref, onMounted } from 'vue';
   margin-bottom: 5px;
   color: #333;
 }
+.moderator__shoe-type__part{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 14px;
+  max-width: 28em;
+}
+.moderator__shoe-type__part div{
+  border: 1px solid #D9D9D9;
+  margin-bottom: 0;
+  padding: 8px;
+}
 
 .color_type__selection{
   display: flex;
