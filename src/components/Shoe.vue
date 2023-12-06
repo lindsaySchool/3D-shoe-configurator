@@ -7,6 +7,8 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
 //import glb
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+//import axis helper from three
+import {AxesHelper} from 'three';
 
 let scene, camera, renderer, controls;
 
@@ -17,14 +19,17 @@ onMounted(()=>{
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
+  //add axis helper
+  const axesHelper = new AxesHelper( 5 );
+  scene.add( axesHelper );
 
   //add orbit controls
   const controls = new OrbitControls( camera, renderer.domElement );
   //add public models shoe.glb
 const loader = new GLTFLoader();
 loader.load('/models/shoe.glb', function(gltf){
-  gltf.scene.position.set(-0.4, 0.4, 1);
-  gltf.scene.rotation.y = 1.5;
+  gltf.scene.position.set(-0.2, 0.25, 0);
+  gltf.scene.rotation.y = 1.6;
   //make shoe bigger
   gltf.scene.scale.set(8, 7, 10);
   scene.add(gltf.scene);
@@ -63,7 +68,7 @@ plane.rotation.x = 1.5;
 scene.add( plane );
 
 
-camera.position.z = 3;
+camera.position.z = 2;
 camera.position.y = 1;
 
 //add ambientlight
