@@ -14,10 +14,12 @@ let scene, camera, renderer, controls;
 
 onMounted(()=>{
   scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xF5F5F5);
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.shadowMap.enabled = true;
   document.body.appendChild( renderer.domElement );
   //add axis helper
   const axesHelper = new AxesHelper( 5 );
@@ -32,11 +34,11 @@ loader.load('/models/shoe.glb', function(gltf){
   gltf.scene.rotation.y = 1.6;
   //make shoe bigger
   gltf.scene.scale.set(8, 7, 10);
-  scene.add(gltf.scene);
   // Traverse the model and log each child
   gltf.scene.traverse(function (child) {
       if (child.isMesh) {
         console.log(child.name);
+        child.castShadow = true;
         if (child.name === 'sole_top') {
           child.material.color.set(0xE90866);
         }
@@ -54,6 +56,8 @@ loader.load('/models/shoe.glb', function(gltf){
         }
 
       }
+      scene.add(gltf.scene);
+
     });
 
 }, undefined, function(error){
@@ -62,9 +66,10 @@ loader.load('/models/shoe.glb', function(gltf){
 
 //add plane
 const planeGeometry = new THREE.PlaneGeometry( 100, 100, 32 );
-const planeMaterial = new THREE.MeshBasicMaterial( {color: 0x69ff47, side: THREE.DoubleSide} );
+const planeMaterial = new THREE.MeshStandardMaterial( {color: 0xF5F5F5, side: THREE.DoubleSide} );
 const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-plane.rotation.x = 1.5;
+plane.receiveShadow = true;
+plane.rotation.x = Math.PI / -2;
 scene.add( plane );
 
 
@@ -77,9 +82,16 @@ scene.add(ambientLight);
 
 //add directional light
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(1, 1, 2);
+directionalLight.position.set(0, 2.4, 0);
 directionalLight.castShadow = true;
 scene.add(directionalLight);
+
+//add extra directional light
+const extraDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+extraDirectionalLight.position.set(camera.position.x, camera.position.y + 0.5, camera.position.z);
+extraDirectionalLight.target.position.set(-0.2, 0.25, 0); // Position of the shoe
+extraDirectionalLight.castShadow = true;
+scene.add(extraDirectionalLight);
 
 function animate() {
 	requestAnimationFrame( animate );
