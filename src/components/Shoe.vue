@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as THREE from 'three';
 
 //import orbitcontrols from 'three-orbitcontrols';
@@ -8,17 +8,19 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 //import glb
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+let scene, camera, renderer, controls;
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+onMounted(()=>{
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-//add orbit controls
-const controls = new OrbitControls( camera, renderer.domElement );
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  document.body.appendChild( renderer.domElement );
 
-//add public models shoe.glb
+  //add orbit controls
+  const controls = new OrbitControls( camera, renderer.domElement );
+  //add public models shoe.glb
 const loader = new GLTFLoader();
 loader.load('/models/shoe.glb', function(gltf){
   gltf.scene.position.set(-1/2, 1/2, 1/2);
@@ -74,17 +76,6 @@ directionalLight.position.set(1, 1, 2);
 directionalLight.castShadow = true;
 scene.add(directionalLight);
 
-window.addEventListener('resize', resizeCanvas);
-
-function resizeCanvas() {
-  const canvas = document.querySelector('canvas');
-  const width = canvas.clientWidth;
-  const height = width*0.75; // Vervang 0.75 door de gewenste aspectratio
-  canvas.style.height = `${height}px`;
-}
-
-// Roep de functie een keer aan bij het laden van de pagina om de initiële hoogte in te stellen
-resizeCanvas();
 function animate() {
 	requestAnimationFrame( animate );
   controls.update();
@@ -92,7 +83,24 @@ function animate() {
 }
 
 animate();
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  });
+});
 
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  });
+});
 
 </script>
 

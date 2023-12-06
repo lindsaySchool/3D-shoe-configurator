@@ -7,3 +7,9 @@ canvas{
   max-width: 64vw;
   margin-top: -32vw;
 }
+@media (max-width: 768px) {
+  canvas{
+    max-width: 100vw;
+    margin-top: -32vw;
+  }
+}
