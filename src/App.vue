@@ -2,7 +2,7 @@
 import {ref} from 'vue';
 //import components
 import Navigation from './components/Navigation.vue'
-import  Shoe from './components/shoe.vue'
+import  Shoe from './components/Shoe.vue'
 import Selection from './components/Selection.vue'
 
 let selectedPart = ref(null);
