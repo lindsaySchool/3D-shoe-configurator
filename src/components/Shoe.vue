@@ -24,15 +24,15 @@ const rotateShoe = (part) => {
   // This is just an example, you'll need to replace this with your actual rotation logic
   if (shoe) { 
     if (part === 'inside') {
-      shoe.rotation.y = 0;
+      shoe.rotation.y =  Math.PI / 2;
     } else if (part === 'laces') {
-      shoe.rotation.y = Math.PI / 2;
+      shoe.rotation.y = 0;
     } else if (part === 'outside_01') {
-      shoe.rotation.y = Math.PI;
+      shoe.rotation.y = Math.PI*1.5;
     } else if (part === 'outside_02/3') {
-      shoe.rotation.y = Math.PI * 1.5;
+      shoe.rotation.y = Math.PI / 2;
     } else if (part === 'sole_top') {
-      shoe.rotation.y = Math.PI * 2;
+      shoe.rotation.y = Math.PI * 1;
     } else if (part === 'sole_bottom') {
       shoe.rotation.y = Math.PI * 2.5;
     }
@@ -85,7 +85,6 @@ onMounted(()=>{
           }
           if (child.name === 'inside') {
             child.material.color.set(0x000ff0);
-            child.material.color.set(0x000000);
           }
           if (child.name === 'laces') {
             child.material.color.set(0xDFEB57);
@@ -110,7 +109,7 @@ onMounted(()=>{
   scene.add( plane );
 
 
-  camera.position.z = 2;
+  camera.position.z = 3;
   camera.position.y = 1;
 
   //add ambientlight
