@@ -46,10 +46,10 @@ watchEffect(() => {
 onMounted(()=>{
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xF5F5F5);
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth*Math.PI/2 / window.innerHeight*Math.PI/4, 0.1, 1000 );
 
   renderer = new THREE.WebGLRenderer();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( window.innerWidth*Math.PI/2, window.innerHeight*Math.PI/4);
   renderer.shadowMap.enabled = true;
   document.body.appendChild( renderer.domElement );
  /*  //add axis helper
@@ -60,7 +60,7 @@ onMounted(()=>{
   const loader = new GLTFLoader();
   loader.load('/models/shoe.glb', function(gltf){
     shoe = gltf.scene;
-    shoe.position.set(-0.2, 0.25, 0);
+    shoe.position.set(-0.2, 1.25, 0);
     shoe.rotation.y = 1.6;
     //make shoe bigger
     shoe.scale.set(8, 7, 10);
@@ -101,11 +101,12 @@ onMounted(()=>{
   const plane = new THREE.Mesh( planeGeometry, planeMaterial );
   plane.receiveShadow = true;
   plane.rotation.x = Math.PI / -2;
+  plane.position.y = 0.98;
   scene.add( plane );
 
 
   camera.position.z = 3;
-  camera.position.y = 1;
+  camera.position.y = 2;
 
   //add ambientlight
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -132,8 +133,8 @@ onMounted(()=>{
   animate();
 
   window.addEventListener('resize', () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const width = window.innerWidth *Math.PI/2;
+      const height = window.innerHeight*Math.PI/4;
       renderer.setSize(width, height);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
@@ -142,8 +143,8 @@ onMounted(()=>{
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = window.innerWidth *Math.PI/2;
+    const height = window.innerHeight*Math.PI/4;
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
