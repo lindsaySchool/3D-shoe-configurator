@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, defineProps, watchEffect } from 'vue';
 import * as THREE from 'three';
 
 //import orbitcontrols from 'three-orbitcontrols';
@@ -10,7 +10,41 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 //import axis helper from three
 import {AxesHelper} from 'three';
 
-let scene, camera, renderer, controls;
+let scene, camera, renderer, controls, shoe;
+
+const props = defineProps({
+  onPartSelected:{
+    type: String,
+    default: null
+  }
+});
+
+const rotateShoe = (part) => {
+  // Rotate the shoe based on the selected part
+  // This is just an example, you'll need to replace this with your actual rotation logic
+  if (shoe) { 
+    if (part === 'inside') {
+      shoe.rotation.y = 0;
+    } else if (part === 'laces') {
+      shoe.rotation.y = Math.PI / 2;
+    } else if (part === 'outside_01') {
+      shoe.rotation.y = Math.PI;
+    } else if (part === 'outside_02/3') {
+      shoe.rotation.y = Math.PI * 1.5;
+    } else if (part === 'sole_top') {
+      shoe.rotation.y = Math.PI * 2;
+    } else if (part === 'sole_bottom') {
+      shoe.rotation.y = Math.PI * 2.5;
+    }
+  }
+};
+
+watchEffect(() => {
+  if (props.onPartSelected) {
+    rotateShoe(props.onPartSelected);
+  }
+});
+
 
 onMounted(()=>{
   scene = new THREE.Scene();
@@ -30,12 +64,13 @@ onMounted(()=>{
   //add public models shoe.glb
   const loader = new GLTFLoader();
   loader.load('/models/shoe.glb', function(gltf){
-    gltf.scene.position.set(-0.2, 0.25, 0);
-    gltf.scene.rotation.y = 1.6;
+    shoe = gltf.scene;
+    shoe.position.set(-0.2, 0.25, 0);
+    shoe.rotation.y = 1.6;
     //make shoe bigger
-    gltf.scene.scale.set(8, 7, 10);
+    shoe.scale.set(8, 7, 10);
     // Traverse the model and log each child
-    gltf.scene.traverse(function (child) {
+    shoe.traverse(function (child) {
         if (child.isMesh) {
           console.log(child.name);
           child.castShadow = true;
@@ -50,19 +85,21 @@ onMounted(()=>{
           }
           if (child.name === 'inside') {
             child.material.color.set(0x000ff0);
+            child.material.color.set(0x000000);
           }
           if (child.name === 'laces') {
             child.material.color.set(0xDFEB57);
           }
 
         }
-        scene.add(gltf.scene);
-
+        scene.add(shoe);
       });
+      rotateShoe(props.onPartSelected);
 
   }, undefined, function(error){
     console.error(error);
   });
+
 
   //add plane
   const planeGeometry = new THREE.PlaneGeometry( 100, 100, 32 );

@@ -1,6 +1,14 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref,defineEmits } from 'vue';
 
+const selectedPart = ref(null);
+const emit = defineEmits(['part-selected']);
+
+const selectPart = (part) => {
+  selectedPart.value = part;
+  console.log(selectedPart.value);
+  emit('part-selected', selectedPart.value);
+}
 
 </script>
 
@@ -8,12 +16,12 @@ import { ref, onMounted } from 'vue';
     <div class="moderator__shoe-type">
         <h2 class="moderator__shoe-type__title">AIR REV. NITRO S TRIPLE WHITE</h2>
         <div class="moderator__shoe-type__part">
-          <div>inside</div>
-          <div>laces</div>
-          <div>outside_01</div>
-          <div>outside_02/3</div>
-          <div>sole_top</div>
-          <div>sole_bottom</div>
+          <div @click="selectPart('inside')">inside</div>
+          <div @click="selectPart('laces')">laces</div>
+          <div @click="selectPart('outside_01')">outside_01</div>
+          <div @click="selectPart('outside_02/3')">outside_02/3</div>
+          <div @click="selectPart('sole_top')">sole_top</div>
+          <div @click="selectPart('sole_bottom')">sole_bottom</div>
         </div>
     </div>
     <div class="moderator__material-type">

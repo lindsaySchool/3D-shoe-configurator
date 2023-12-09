@@ -1,8 +1,16 @@
 <script setup>
+import {ref} from 'vue';
 //import components
 import Navigation from './components/Navigation.vue'
 import  Shoe from './components/shoe.vue'
 import Selection from './components/Selection.vue'
+
+let selectedPart = ref(null);
+
+const handlePartSelected = (part) =>{
+  console.log(`Dit is de ${part}`);
+  selectedPart.value= part;
+}
 
 </script>
 
@@ -12,10 +20,10 @@ import Selection from './components/Selection.vue'
   </header>
   <main class="moderator">
     <div class="moderator__model">
-      <Shoe />
+      <Shoe :onPartSelected="selectedPart" />
     </div>
     <div class="moderator__form">
-      <Selection />
+      <Selection  @part-selected="handlePartSelected" />
     </div>
   </main>
 </template>
