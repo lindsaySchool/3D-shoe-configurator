@@ -90,26 +90,14 @@ const selectionCount = ref(1);
 watchEffect(() => {
   if (props.onPartSelected) {
     rotateShoe(props.onPartSelected);
-    if (selectionCount.value > 1) {
-      props.onPartSelected = null;
-      props.onColorSelected = null;
-      selectionCount.value = 0;
-    }else{
-      selectionCount.value++;
-    }
+    console.log(props.onPartSelected)
   }
 });
 
 watchEffect(() => {
   if (props.onColorSelected && props.onPartSelected) {
     changeColor(props.onPartSelected, props.onColorSelected);
-    if (selectionCount.value > 1) {
-      props.onPartSelected = null;
-      props.onColorSelected = null;
-      selectionCount.value = 0;
-    }else{
-      selectionCount.value++;
-    }
+    console.log(props.onColorSelected)
   }
 });
 

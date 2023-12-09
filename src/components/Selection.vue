@@ -7,12 +7,12 @@ const emit = defineEmits(['part-selected', 'color-selected']);
 
 const selectPart = (part) => {
   selectedPart.value = part;
-  console.log(selectedPart.value);
+  //console.log(selectedPart.value);
   emit('part-selected', selectedPart.value);
 }
 const selectColor = (color) => {
   selectedColor.value = color;
-  console.log(selectedColor.value);
+  //console.log(selectedColor.value);
   emit('color-selected', selectedColor.value);
 }
 

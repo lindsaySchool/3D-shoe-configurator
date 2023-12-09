@@ -7,14 +7,20 @@ import Selection from './components/Selection.vue'
 
 let selectedPart = ref(null);
 let selectedColor = ref(null);
+let previousColor = ref(null);
 
 const handlePartSelected = (part) =>{
   //console.log(`Dit is de ${part}`);
+  if (part !== previousColor.value) {
   selectedPart.value= part;
+  selectedColor.value = null;}
 }
 const handleColorSelected = (color) => {
-  console.log(`Dit is de ${color}`);
-  selectedColor.value = color;
+  //console.log(`Dit is de ${color}`);
+  if (color !== previousColor.value) {
+    selectedColor.value = color;
+    previousColor.value = color;
+  }
 }
 </script>
 
