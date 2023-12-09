@@ -6,12 +6,16 @@ import  Shoe from './components/shoe.vue'
 import Selection from './components/Selection.vue'
 
 let selectedPart = ref(null);
+let selectedColor = ref(null);
 
 const handlePartSelected = (part) =>{
-  console.log(`Dit is de ${part}`);
+  //console.log(`Dit is de ${part}`);
   selectedPart.value= part;
 }
-
+const handleColorSelected = (color) => {
+  console.log(`Dit is de ${color}`);
+  selectedColor.value = color;
+}
 </script>
 
 <template>
@@ -20,10 +24,10 @@ const handlePartSelected = (part) =>{
   </header>
   <main class="moderator">
     <div class="moderator__model">
-      <Shoe :onPartSelected="selectedPart" />
+      <Shoe :onPartSelected="selectedPart"  :onColorSelected="selectedColor"/>
     </div>
     <div class="moderator__form">
-      <Selection  @part-selected="handlePartSelected" />
+      <Selection  @part-selected="handlePartSelected" @color-selected="handleColorSelected" />
     </div>
   </main>
 </template>

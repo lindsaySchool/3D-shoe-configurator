@@ -13,6 +13,10 @@ const props = defineProps({
   onPartSelected:{
     type: String,
     default: null
+  },
+  onColorSelected:{
+    type: String,
+    default: null
   }
 });
 
@@ -24,9 +28,9 @@ const rotateShoe = (part) => {
       shoe.rotation.y =  Math.PI / 2;
     } else if (part === 'laces') {
       shoe.rotation.y = 0;
-    } else if (part === 'outside_01') {
+    } else if (part === 'outside_1') {
       shoe.rotation.y = Math.PI*1.5;
-    } else if (part === 'outside_02/3') {
+    } else if (part === 'outside_2') {
       shoe.rotation.y = Math.PI / 2;
     } else if (part === 'sole_top') {
       shoe.rotation.y = Math.PI * 1;
@@ -36,12 +40,78 @@ const rotateShoe = (part) => {
   }
 };
 
+// Add a new function to change the color of the selected part
+const changeColor = (part, color) => {
+  if (shoe) {
+    shoe.traverse((child) =>{
+      if (child.isMesh && child.name === part) {
+        switch (color) {
+          case 'white':
+            child.material.color.set(0xFFFFFF);
+            break;
+          case 'grey':
+            child.material.color.set(0x808080);
+            break;
+          case 'lime':
+            child.material.color.set(0x00FF00);
+            break;
+          case 'black':
+            child.material.color.set(0x000000);
+            break;
+          case 'pink':
+            child.material.color.set(0xFFC0CB);
+            break;
+          case 'yellow':
+            child.material.color.set(0xFFFF00);
+            break;
+          case 'red':
+            child.material.color.set(0xFF0000);
+            break;
+          case 'orange':
+            child.material.color.set(0xFFA500);
+            break;
+          case 'blue':
+            child.material.color.set(0x0000FF);
+            break;
+          case 'purple':
+            child.material.color.set(0x800080);
+            break;
+          default:
+            child.material.color.set(0xFFFFFF); // Default to white
+            break;
+        }
+      }
+      });
+    }
+  }
+
+const selectionCount = ref(1);
+
 watchEffect(() => {
   if (props.onPartSelected) {
     rotateShoe(props.onPartSelected);
+    if (selectionCount.value > 1) {
+      props.onPartSelected = null;
+      props.onColorSelected = null;
+      selectionCount.value = 0;
+    }else{
+      selectionCount.value++;
+    }
   }
 });
 
+watchEffect(() => {
+  if (props.onColorSelected && props.onPartSelected) {
+    changeColor(props.onPartSelected, props.onColorSelected);
+    if (selectionCount.value > 1) {
+      props.onPartSelected = null;
+      props.onColorSelected = null;
+      selectionCount.value = 0;
+    }else{
+      selectionCount.value++;
+    }
+  }
+});
 
 onMounted(()=>{
   scene = new THREE.Scene();
@@ -65,29 +135,17 @@ onMounted(()=>{
     //make shoe bigger
     shoe.scale.set(8, 7, 10);
     // Traverse the model and log each child
-    shoe.traverse(function (child) {
+    let outside_2_group = new THREE.Group();
+    outside_2_group.name = 'outside_2';
+    shoe.traverse((child) =>{
         if (child.isMesh) {
-          console.log(child.name);
+          if (child.name === 'outside_2' || child.name === 'outside_3') {
+          outside_2_group.add(child.clone());
+          }
           child.castShadow = true;
-          if (child.name === 'sole_top') {
-            child.material.color.set(0xE90866);
-          }
-          if (child.name === 'sole_bottom') {
-            child.material.color.set(0x4F4F4F);
-          }
-          if (child.name === 'outside_1') {
-            child.material.color.set(0x69ff47);
-          }
-          if (child.name === 'inside') {
-            child.material.color.set(0x000ff0);
-          }
-          if (child.name === 'laces') {
-            child.material.color.set(0xDFEB57);
-          }
-
         }
-        scene.add(shoe);
       });
+      scene.add(shoe);
       rotateShoe(props.onPartSelected);
 
   }, undefined, function(error){
