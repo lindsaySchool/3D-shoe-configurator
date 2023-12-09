@@ -9,25 +9,34 @@ const selectPart = (part) => {
   selectedPart.value = part;
   //console.log(selectedPart.value);
   emit('part-selected', selectedPart.value);
+  isSelectedPart(selectedPart.value);
 }
 const selectColor = (color) => {
   selectedColor.value = color;
   //console.log(selectedColor.value);
   emit('color-selected', selectedColor.value);
+  isSelectedColor(selectedColor.value);
 }
 
+const isSelectedPart = (part) => {
+  return part === selectedPart.value;
+}
+
+const isSelectedColor = (color) => {
+  return color === selectedColor.value;
+}
 </script>
 
 <template>
     <div class="moderator__shoe-type">
         <h2 class="moderator__shoe-type__title">AIR REV. NITRO S TRIPLE WHITE</h2>
         <div class="moderator__shoe-type__part">
-          <div @click="selectPart('inside')">inside</div>
-          <div @click="selectPart('laces')">laces</div>
-          <div @click="selectPart('outside_1')">outside_01</div>
-          <div @click="selectPart('outside_2')">outside_2/3</div>
-          <div @click="selectPart('sole_top')">sole_top</div>
-          <div @click="selectPart('sole_bottom')">sole_bottom</div>
+          <div :class="{ selected: isSelectedPart('inside') }" @click="selectPart('inside')">inside</div>
+          <div :class="{ selected: isSelectedPart('laces') }" @click="selectPart('laces')">laces</div>
+          <div :class="{ selected: isSelectedPart('outside_1') }" @click="selectPart('outside_1')">outside_01</div>
+          <div :class="{ selected: isSelectedPart('outside_2') }" @click="selectPart('outside_2')">outside_2/3</div>
+          <div :class="{ selected: isSelectedPart('sole_top') }" @click="selectPart('sole_top')">sole_top</div>
+          <div :class="{ selected: isSelectedPart('sole_bottom') }" @click="selectPart('sole_bottom')">sole_bottom</div>
         </div>
     </div>
     <div class="moderator__material-type">
@@ -50,16 +59,16 @@ const selectColor = (color) => {
     <div class="moderator__color_type">
         <h3 class="color_type__title">Color</h3>
         <div class="color_type__selection">
-          <div class="color-white" @click="selectColor('white')"></div>
-          <div class="color-grey" @click="selectColor('grey')"></div>
-          <div class="color-lime" @click="selectColor('lime')"></div>
-          <div class="color-black" @click="selectColor('black')"></div>
-          <div class="color-pink" @click="selectColor('pink')"></div>
-          <div class="color-yellow" @click="selectColor('yellow')"></div>
-          <div class="color-red" @click="selectColor('red')"></div>
-          <div class="color-orange" @click="selectColor('orange')"></div>
-          <div class="color-blue" @click="selectColor('blue')"></div>
-          <div class="color-purple" @click="selectColor('purple')"></div>
+          <div :class="{ selected: isSelectedColor('white') }" class="color-white" @click="selectColor('white')"></div>
+          <div  :class="{ selected: isSelectedColor('grey') }" class="color-grey" @click="selectColor('grey')"></div>
+          <div :class="{ selected: isSelectedColor('lime') }" class="color-lime" @click="selectColor('lime')"></div>
+          <div :class="{ selected: isSelectedColor('black') }" class="color-black" @click="selectColor('black')"></div>
+          <div :class="{ selected: isSelectedColor('pink') }" class="color-pink" @click="selectColor('pink')"></div>
+          <div :class="{ selected: isSelectedColor('yellow') }" class="color-yellow" @click="selectColor('yellow')"></div>
+          <div :class="{ selected: isSelectedColor('red') }" class="color-red" @click="selectColor('red')"></div>
+          <div :class="{ selected: isSelectedColor('orange') }" class="color-orange" @click="selectColor('orange')"></div>
+          <div :class="{ selected: isSelectedColor('blue') }" class="color-blue" @click="selectColor('blue')"></div>
+          <div :class="{ selected: isSelectedColor('purple') }" class="color-purple" @click="selectColor('purple')"></div>
         </div>
     </div> 
     <div class="navigation_buttons">
@@ -203,5 +212,11 @@ const selectColor = (color) => {
   text-decoration: none;
   text-transform: uppercase;
 
+}
+.moderator__shoe-type__part div.selected {
+  border: 2px solid #69FF47;
+}
+.color_type__selection div.selected {
+  border: 2px solid #69FF47;
 }
 </style>
