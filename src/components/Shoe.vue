@@ -2,15 +2,12 @@
 import { ref, onMounted, onBeforeUnmount, defineProps, watchEffect } from 'vue';
 import * as THREE from 'three';
 
-//import orbitcontrols from 'three-orbitcontrols';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-
 //import glb
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 //import axis helper from three
 import {AxesHelper} from 'three';
 
-let scene, camera, renderer, controls, shoe;
+let scene, camera, renderer, shoe;
 
 const props = defineProps({
   onPartSelected:{
@@ -58,9 +55,7 @@ onMounted(()=>{
  /*  //add axis helper
   const axesHelper = new AxesHelper( 5 );
   scene.add( axesHelper ); */
-
-  //add orbit controls
-  const controls = new OrbitControls( camera, renderer.domElement );
+  
   //add public models shoe.glb
   const loader = new GLTFLoader();
   loader.load('/models/shoe.glb', function(gltf){
@@ -131,7 +126,6 @@ onMounted(()=>{
 
   function animate() {
     requestAnimationFrame( animate );
-    controls.update();
     renderer.render( scene, camera );
   }
 
