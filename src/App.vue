@@ -39,6 +39,9 @@ const handleColorSelected = (color) => {
 </template>
 
 <style scoped>
+main.moderator{
+  overflow: hidden;
+}
 .moderator[data-v-7a7a37b1] {
   display: flex;
   flex-wrap: wrap;
@@ -58,6 +61,7 @@ const handleColorSelected = (color) => {
   flex-direction: column;
   justify-content: space-between;
   padding: 0 1rem;
+  float: right;
 }
 
 @media (max-width: 768px) {
