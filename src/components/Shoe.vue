@@ -9,6 +9,9 @@ import {AxesHelper} from 'three';
 
 let scene, camera, renderer, shoe;
 
+const emit = defineEmits(['save-data']);
+
+
 const props = defineProps({
   onPartSelected:{
     type: String,
@@ -19,6 +22,24 @@ const props = defineProps({
     default: null
   }
 });
+
+const data = {
+  dataObject: {
+    name: "AIR REV. NITRO S TRIPLE WHITE",
+    size: "EU 42.5",
+    client: "1",
+    status: "in progress",
+    compound: {
+      outside_01: "",
+      laces: "",
+      sole_top: "",
+      inside: "",
+      outside_2: "",
+      sole_bottom: ""
+    },
+    price: 51.99,
+  }
+};
 
 const rotateShoe = (part) => {
   // Rotate the shoe based on the selected part
@@ -39,6 +60,8 @@ const rotateShoe = (part) => {
     }
   }
 };
+
+//const selectedColor = {};
 
 // Add a new function to change the color of the selected part
 const changeColor = (part, color) => {
@@ -80,6 +103,10 @@ const changeColor = (part, color) => {
             child.material.color.set(0xFFFFFF); // Default to white
             break;
         }
+        //save the color of the selected part
+        data.dataObject.compound[part] = color;
+        console.log(data.dataObject);
+        emit('save-data', data.dataObject);
       }
       });
     }

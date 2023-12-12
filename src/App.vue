@@ -8,6 +8,7 @@ import Selection from './components/Selection.vue'
 let selectedPart = ref(null);
 let selectedColor = ref(null);
 let previousColor = ref(null);
+let dataObject = ref(null);
 
 const handlePartSelected = (part) =>{
   //console.log(`Dit is de ${part}`);
@@ -22,6 +23,11 @@ const handleColorSelected = (color) => {
     previousColor.value = color;
   }
 }
+//save data to api
+const handleDataSaved = (data) =>{
+  dataObject.value = data;
+  console.log(dataObject.value);
+}
 </script>
 
 <template>
@@ -30,10 +36,10 @@ const handleColorSelected = (color) => {
   </header>
   <main class="moderator">
     <div class="moderator__model">
-      <Shoe :onPartSelected="selectedPart"  :onColorSelected="selectedColor"/>
+      <Shoe @save-data="handleDataSaved" :onPartSelected="selectedPart"  :onColorSelected="selectedColor"/>
     </div>
     <div class="moderator__form">
-      <Selection  @part-selected="handlePartSelected" @color-selected="handleColorSelected" />
+      <Selection  @part-selected="handlePartSelected" @color-selected="handleColorSelected" :dataObject="dataObject"/>
     </div>
   </main>
 </template>
