@@ -32,7 +32,7 @@ const isSelectedColor = (color) => {
 //save data to api
 const saveData = async () => {
   try {
-    const response = await postData('http://localhost:3000/api/v1/shoes', props.dataObject);
+    const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', props.dataObject);
     console.log('Success:', response);
   } catch (error) {
     console.error('Error:', error);
