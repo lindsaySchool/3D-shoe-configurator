@@ -5,6 +5,10 @@ const selectedPart = ref(null);
 const selectedColor = ref(null);
 const emit = defineEmits(['part-selected', 'color-selected']);
 
+const props = defineProps({
+  dataObject: Object
+});
+
 const selectPart = (part) => {
   selectedPart.value = part;
   //console.log(selectedPart.value);
@@ -24,6 +28,31 @@ const isSelectedPart = (part) => {
 
 const isSelectedColor = (color) => {
   return color === selectedColor.value;
+}
+//save data to api
+const saveData = async () => {
+  try {
+    const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', props.dataObject);
+    console.log('Success:', response);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+async function postData(url = '', data = {}) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  return response.json();
 }
 </script>
 
@@ -77,7 +106,7 @@ const isSelectedColor = (color) => {
             <path d="M7.65 18L18.85 29.2L16 32L0 16L16 0L18.85 2.8L7.65 14H32V18H7.65Z" fill="#C7C7C7"/>
           </svg>
         </a>
-        <a class="navigation_buttons-save">Save</a>
+        <a class="navigation_buttons-save" @click="saveData">Save</a>
     </div>
 </template>
 
