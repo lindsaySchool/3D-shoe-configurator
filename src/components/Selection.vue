@@ -42,6 +42,8 @@ const isSelectedColor = (color) => {
 }
 //save data to api
 const saveData = async () => {
+  console.log("SAVED TO DATABASE")
+  console.log("DE DATAAAA", props.dataObject)
   try {
     const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', props.dataObject);
     console.log('Success:', response);

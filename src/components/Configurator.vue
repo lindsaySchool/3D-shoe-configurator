@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from 'vue';
 //import components
-import  Shoe from '../components/Shoe.vue'
+import  Shoe from '../components/shoe.vue'
 import Selection from '../components/Selection.vue'
 
 let selectedPart = ref(null);
