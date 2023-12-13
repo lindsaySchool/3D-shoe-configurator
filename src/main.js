@@ -11,6 +11,7 @@ import Configurator from './components/Configurator.vue'
 import Shop from './components/Shop.vue'
 import Detail from './components/Detail.vue'
 import Client from './components/Client.vue'
+import Shopbag from './components/Shopbag.vue'
 
 //define routes
 const routes = [
@@ -18,6 +19,7 @@ const routes = [
   { path: '/', component: Shop },
   { path: '/product-detail', component: Detail },
   { path: '/client', component: Client },
+  { path: '/shopbag', component: Shopbag },
 ]
 
 const router = VueRouter.createRouter({

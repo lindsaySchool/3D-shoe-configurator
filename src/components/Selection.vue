@@ -101,12 +101,16 @@ async function postData(url = '', data = {}) {
         </div>
     </div> 
     <div class="navigation_buttons">
+      <router-link to="/client">
         <a class="navigation_buttons-back">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.65 18L18.85 29.2L16 32L0 16L16 0L18.85 2.8L7.65 14H32V18H7.65Z" fill="#C7C7C7"/>
           </svg>
         </a>
+      </router-link>
+      <router-link to="/shopbag">
         <a class="navigation_buttons-save" @click="saveData">Save</a>
+      </router-link>
     </div>
 </template>
 
