@@ -15,6 +15,7 @@
   import {
     AxesHelper
   } from 'three';
+  const materialsMap = new Map();
   let scene, camera, renderer, shoe;
   const emit = defineEmits(['save-data']);
   const props = defineProps({
@@ -46,11 +47,11 @@
         sole_bottom: ""
       },
       price: 51.99,
-    }
+    },
+    childColors: {}
   };
   const rotateShoe = (part) => {
     // Rotate the shoe based on the selected part
-    // This is just an example, you'll need to replace this with your actual rotation logic
     if (shoe) {
       if (part === 'inside') {
         shoe.rotation.y = Math.PI / 2;
@@ -74,18 +75,18 @@
     if (shoe) {
       shoe.traverse((child) => {
         if (child.isMesh && child.name === part) {
+          let newMaterial;
           switch (material) {
             case 'leather':
-              child.material = leatherMaterial;
-              const colorValue = new THREE.Color(color);
-              child.material.color.set(colorValue);
+              newMaterial = leatherMaterial.clone();
               break;
             default:
-              child.material = new THREE.MeshStandardMaterial({
-                color: material
-              });
+              child.material = new THREE.MeshStandardMaterial({});
               break;
           }
+          newMaterial.color.set(color);
+          child.material = newMaterial;
+          data.childColors[part] = color;
           data.dataObject.compound[part] = {
             material: child.material,
             color
@@ -137,7 +138,9 @@
               break;
           }
           //save the color of the selected part
-          data.dataObject.compound[part] = color;
+          //data.dataObject.compound[part] = color;
+          data.childColors[part] = color;
+          applyMaterial(part, props.onMaterialSelected, color);
           console.log(data.dataObject);
           emit('save-data', data.dataObject);
         }
@@ -154,7 +157,7 @@
   watchEffect(() => {
     if (props.onColorSelected && props.onPartSelected && props.onMaterialSelected) {
       changeColor(props.onPartSelected, props.onColorSelected);
-      applyMaterial(props.onPartSelected, props.onMaterialSelected, props.onColorSelected);
+      //applyMaterial(props.onPartSelected, props.onMaterialSelected, props.onColorSelected);
       console.log(props.onColorSelected)
     }
   });
