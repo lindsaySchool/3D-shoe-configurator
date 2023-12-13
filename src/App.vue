@@ -42,6 +42,7 @@ const handleDataSaved = (data) =>{
       <Selection  @part-selected="handlePartSelected" @color-selected="handleColorSelected" :dataObject="dataObject"/>
     </div>
   </main>
+  <router-view></router-view>
 </template>
 
 <style scoped>
