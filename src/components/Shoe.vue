@@ -39,12 +39,12 @@
       client: "1",
       status: "in progress",
       compound: {
-        outside_01: "",
-        laces: "",
-        sole_top: "",
-        inside: "",
-        outside_2: "",
-        sole_bottom: ""
+        outside_01: {},
+        laces: {},
+        sole_top: {},
+        inside: {},
+        outside_2: {},
+        sole_bottom: {}
       },
       price: 51.99,
     },
@@ -88,7 +88,7 @@
           child.material = newMaterial;
           data.childColors[part] = color;
           data.dataObject.compound[part] = {
-            material: child.material,
+            material: material,
             color
           };
           console.log(data.dataObject);

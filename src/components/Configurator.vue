@@ -9,6 +9,7 @@ let selectedColor = ref(null);
 let selectedMaterial = ref(null);
 let previousColor = ref(null);
 let dataObject = ref(null);
+let user = ref({username: "Jef", email: "jef@email.com"});
 
 const handlePartSelected = (part) =>{
   //console.log(`Dit is de ${part}`);
@@ -39,7 +40,7 @@ const handleDataSaved = (data) =>{
       <Shoe @save-data="handleDataSaved" :onPartSelected="selectedPart"  :onMaterialSelected="selectedMaterial" :onColorSelected="selectedColor"/>
     </div>
     <div class="moderator__form">
-      <Selection  @part-selected="handlePartSelected" @material-selected="handleMaterialSelected" @color-selected="handleColorSelected" :dataObject="dataObject"/>
+      <Selection  @part-selected="handlePartSelected" @material-selected="handleMaterialSelected" @color-selected="handleColorSelected" :dataObject="dataObject" :user="user"/>
     </div>
   </main>
 </template>
