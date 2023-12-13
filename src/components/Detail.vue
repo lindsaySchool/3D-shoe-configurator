@@ -43,7 +43,9 @@
                                 fill="#C7C7C7" />
                         </svg>
                     </router-link>
-                    <a class="navigation_buttons-save" @click="saveData">Next</a>
+                    <router-link to="/client">
+                        <a class="navigation_buttons-save" @click="saveData">Next</a>
+                    </router-link> 
                 </div>
             </div>
         </div>
@@ -111,32 +113,32 @@
     }
 
 
-.navigation_buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 60px;
-  padding: 0 2em;
-}
+    .navigation_buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 60px;
+        padding: 0 2em;
+    }
 
-.navigation_buttons a {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 1em;
-  margin: 1em;
-}
+    .navigation_buttons a {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1em;
+        margin: 1em;
+    }
 
-.navigation_buttons-save {
-    background-color: #1C1B1F;
-  color: #fff;
-  padding: 18px 93px;
-  text-decoration: none;
-  text-transform: uppercase;
+    .navigation_buttons-save {
+        background-color: #1C1B1F;
+        color: #fff;
+        padding: 18px 93px;
+        text-decoration: none;
+        text-transform: uppercase;
 
-}
+    }
 
-.navigation_buttons svg {
-  fill: #1C1B1F;
-  cursor: pointer;
-}
+    .navigation_buttons svg {
+        fill: #1C1B1F;
+        cursor: pointer;
+    }
 </style>
