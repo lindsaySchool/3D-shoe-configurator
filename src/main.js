@@ -8,10 +8,12 @@ import * as VueRouter from 'vue-router'
 
 //import components
 import Configurator from './components/Configurator.vue'
+import Shop from './components/Shop.vue'
 
 //define routes
 const routes = [
-  { path: '/', component: Configurator }
+  { path: '/configurator', component: Configurator },
+  { path: '/', component: Shop },
 ]
 
 const router = VueRouter.createRouter({
