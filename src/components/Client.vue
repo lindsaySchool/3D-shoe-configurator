@@ -3,12 +3,23 @@
         ref,
         defineEmits
     } from 'vue';
+    import {
+        useRoute,
+        useRouter
+    } from 'vue-router';
     const name = ref('');
     const email = ref('');
+    const router = useRouter();
     const saveData = () => {
-        console.log(name.value, email.value);
+        console.log(name.value, email.value)
+        router.push({
+            path: '/configurator',
+            query: {
+                name: name.value,
+                email: email.value
+            }
+        });
     };
-    defineEmits(['update:modelValue']);
 </script>
 
 <template>
@@ -20,7 +31,7 @@
             <input v-model="email" type="email" placeholder="Email" class="client__input" />
 
             <div class="navigation_buttons">
-                <router-link to="/configurator">
+                <router-link :to="{ path: '/configurator', query: { name, email } }">
                     <a class="navigation_buttons-save" @click="saveData">Next</a>
                 </router-link>
             </div>
@@ -85,13 +96,14 @@
         text-transform: uppercase;
 
     }
-    @media (max-width: 600px) {
-  .client__container {
-    margin-left: 0;
-  }
 
-  .client__input {
-    max-width: 100%;
-  }
-}
+    @media (max-width: 600px) {
+        .client__container {
+            margin-left: 0;
+        }
+
+        .client__input {
+            max-width: 100%;
+        }
+    }
 </style>
