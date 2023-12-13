@@ -3,7 +3,8 @@ import { ref,defineEmits } from 'vue';
 
 const selectedPart = ref(null);
 const selectedColor = ref(null);
-const emit = defineEmits(['part-selected', 'color-selected']);
+const selectedMaterial = ref(null);
+const emit = defineEmits(['part-selected','material-selected', 'color-selected']);
 
 const props = defineProps({
   dataObject: Object
@@ -11,10 +12,17 @@ const props = defineProps({
 
 const selectPart = (part) => {
   selectedPart.value = part;
+  selectedMaterial.value = null;
   //console.log(selectedPart.value);
   emit('part-selected', selectedPart.value);
   isSelectedPart(selectedPart.value);
 }
+const selectMaterial = async (material) => {
+  selectedMaterial.value = material;
+  emit('material-selected', selectedMaterial.value);
+  isSelectedMaterial(selectedMaterial.value);
+}
+
 const selectColor = (color) => {
   selectedColor.value = color;
   //console.log(selectedColor.value);
@@ -25,6 +33,9 @@ const selectColor = (color) => {
 const isSelectedPart = (part) => {
   return part === selectedPart.value;
 }
+const isSelectedMaterial = (material) => {
+    return material === selectedMaterial.value;
+  }
 
 const isSelectedColor = (color) => {
   return color === selectedColor.value;
@@ -71,17 +82,17 @@ async function postData(url = '', data = {}) {
     <div class="moderator__material-type">
         <h3>Material</h3>
         <div class="material">
-          <div class="material_leather">
+          <div class="material_leather" :class="{ selected: isSelectedMaterial('leather') }" @click="selectMaterial('leather')">
             <div class="material_leather__image"></div>
             <div class="material_leather__name">Leather</div>
           </div>
           <div class="material_plastic">
             <div class="material_plastic__image"></div>
-            <div class="material_plastic__name">Plastic</div>
+            <div class="material_plastic__name"  :class="{ selected: isSelectedMaterial('plastic') }" @click="selectMaterial('plastic')">Plastic</div>
           </div>
           <div class="material_rubber">
             <div class="material_rubber__image"></div>
-            <div class="material_rubber__name">Rubber</div>
+            <div class="material_rubber__name" :class="{ selected: isSelectedMaterial('rubber') }" @click="selectMaterial('rubber')">Rubber</div>
           </div>
         </div>
     </div>
@@ -109,7 +120,7 @@ async function postData(url = '', data = {}) {
         </a>
       </router-link>
       <router-link to="/shopbag">
-        <a class="navigation_buttons-save" @click="saveData">Save</a>
+        <a class="navigation_buttons-save" @click="saveData">Saave</a>
       </router-link>
     </div>
 </template>

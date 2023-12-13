@@ -1,11 +1,12 @@
 <script setup>
 import {ref} from 'vue';
 //import components
-import  Shoe from '../components/Shoe.vue'
+import  Shoe from '../components/shoe.vue'
 import Selection from '../components/Selection.vue'
 
 let selectedPart = ref(null);
 let selectedColor = ref(null);
+let selectedMaterial = ref(null);
 let previousColor = ref(null);
 let dataObject = ref(null);
 
@@ -14,6 +15,9 @@ const handlePartSelected = (part) =>{
   if (part !== previousColor.value) {
   selectedPart.value= part;
   selectedColor.value = null;}
+}
+const handleMaterialSelected = (material) => {
+  selectedMaterial.value = material;
 }
 const handleColorSelected = (color) => {
   //console.log(`Dit is de ${color}`);
@@ -32,10 +36,10 @@ const handleDataSaved = (data) =>{
 <template>
   <main class="moderator">
     <div class="moderator__model">
-      <Shoe @save-data="handleDataSaved" :onPartSelected="selectedPart"  :onColorSelected="selectedColor"/>
+      <Shoe @save-data="handleDataSaved" :onPartSelected="selectedPart"  :onMaterialSelected="selectedMaterial" :onColorSelected="selectedColor"/>
     </div>
     <div class="moderator__form">
-      <Selection  @part-selected="handlePartSelected" @color-selected="handleColorSelected" :dataObject="dataObject"/>
+      <Selection  @part-selected="handlePartSelected" @material-selected="handleMaterialSelected" @color-selected="handleColorSelected" :dataObject="dataObject"/>
     </div>
   </main>
 </template>
