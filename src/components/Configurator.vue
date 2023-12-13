@@ -1,15 +1,25 @@
 <script setup>
-import {ref} from 'vue';
+import {ref, defineProps} from 'vue';
+import {useRoute} from 'vue-router';
 //import components
 import  Shoe from '../components/Shoe.vue'
 import Selection from '../components/Selection.vue'
+
+//define props
+const props = defineProps(['name', 'email']);
+const route = useRoute();
+
+//acces the props
+const routeName = route.query.name;
+const routeEmail = route.query.email;
+console.log("data: ", routeName, routeEmail);
 
 let selectedPart = ref(null);
 let selectedColor = ref(null);
 let selectedMaterial = ref(null);
 let previousColor = ref(null);
 let dataObject = ref(null);
-let user = ref({username: "Jef", email: "jef@email.com"});
+let user = ref({username: routeName, email: routeEmail});
 
 const handlePartSelected = (part) =>{
   //console.log(`Dit is de ${part}`);
