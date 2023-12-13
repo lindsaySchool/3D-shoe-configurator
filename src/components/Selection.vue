@@ -7,7 +7,8 @@ const selectedMaterial = ref(null);
 const emit = defineEmits(['part-selected','material-selected', 'color-selected']);
 
 const props = defineProps({
-  dataObject: Object
+  dataObject: Object,
+  user: Object
 });
 
 const selectPart = (part) => {
@@ -43,9 +44,10 @@ const isSelectedColor = (color) => {
 //save data to api
 const saveData = async () => {
   console.log("SAVED TO DATABASE")
-  console.log("DE DATAAAA", props.dataObject)
   try {
-    const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', props.dataObject);
+    const dataWithUser = {...props.dataObject, user: props.user}
+    console.log(dataWithUser);
+    const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', dataWithUser);
     console.log('Success:', response);
   } catch (error) {
     console.error('Error:', error);
