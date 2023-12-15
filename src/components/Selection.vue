@@ -11,6 +11,13 @@ const props = defineProps({
   user: Object
 });
 
+//make a new Primus connection
+let primus = new Primus('http://localhost:3000');
+
+primus.on('open', () => {
+  console.log('Connection is ALIVES and kicking');
+});
+
 const selectPart = (part) => {
   selectedPart.value = part;
   selectedMaterial.value = null;
@@ -49,6 +56,9 @@ const saveData = async () => {
     console.log(dataWithUser);
     const response = await postData('https://sneaker-api-4zoy.onrender.com/api/v1/shoes', dataWithUser);
     console.log('Success:', response);
+    if(primus.readyState == Primus.OPEN){
+    primus.write(JSON.stringify({action: 'post', data: response.data}));
+  }
   } catch (error) {
     console.error('Error:', error);
   }
@@ -66,7 +76,6 @@ async function postData(url = '', data = {}) {
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-
   return response.json();
 }
 </script>
