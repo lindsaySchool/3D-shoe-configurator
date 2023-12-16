@@ -99,13 +99,13 @@ async function postData(url = '', data = {}) {
             <div class="material_leather__image"></div>
             <div class="material_leather__name">Leather</div>
           </div>
-          <div class="material_plastic">
+          <div class="material_plastic"   :class="{ selected: isSelectedMaterial('plastic') }" @click="selectMaterial('plastic')">
             <div class="material_plastic__image"></div>
-            <div class="material_plastic__name"  :class="{ selected: isSelectedMaterial('plastic') }" @click="selectMaterial('plastic')">Plastic</div>
+            <div class="material_plastic__name">Plastic</div>
           </div>
-          <div class="material_rubber">
+          <div class="material_rubber"  :class="{ selected: isSelectedMaterial('rubber') }" @click="selectMaterial('rubber')">
             <div class="material_rubber__image"></div>
-            <div class="material_rubber__name" :class="{ selected: isSelectedMaterial('rubber') }" @click="selectMaterial('rubber')">Rubber</div>
+            <div class="material_rubber__name">Rubber</div>
           </div>
         </div>
     </div>
@@ -271,6 +271,9 @@ async function postData(url = '', data = {}) {
 
 }
 .moderator__shoe-type__part div.selected {
+  border: 2px solid #69FF47;
+}
+.material div.selected{
   border: 2px solid #69FF47;
 }
 .color_type__selection div.selected {
