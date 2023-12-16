@@ -4,8 +4,9 @@
     onMounted,
     onBeforeUnmount,
     defineProps,
-    watchEffect
-  } from 'vue';
+    watchEffect  } from 'vue';
+  import { onBeforeRouteLeave } from 'vue-router';
+
   import * as THREE from 'three';
   //import glb
   import {
@@ -17,6 +18,8 @@
   } from 'three';
   const materialsMap = new Map();
   let scene, camera, renderer, shoe;
+  let showCanvas = ref(true);
+  let canvasContainer = ref(null);
   const emit = defineEmits(['save-data']);
   const props = defineProps({
     onPartSelected: {
@@ -169,7 +172,7 @@
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth * Math.PI / 2, window.innerHeight * Math.PI / 4);
     renderer.shadowMap.enabled = true;
-    document.body.appendChild(renderer.domElement);
+    canvasContainer.value.appendChild(renderer.domElement);
     /*  //add axis helper
      const axesHelper = new AxesHelper( 5 );
      scene.add( axesHelper ); */
@@ -262,10 +265,13 @@
       camera.updateProjectionMatrix();
     });
   });
+  onBeforeRouteLeave(()=>{
+    showCanvas.value = false;
+  })
 </script>
 
 <template>
-  <div></div>
+  <div v-if="showCanvas" ref="canvasContainer" style="display: inline-block;"></div>
 </template>
 
 <style scoped>
