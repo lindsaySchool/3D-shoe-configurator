@@ -132,8 +132,8 @@ async function postData(url = '', data = {}) {
           </svg>
         </a>
       </router-link>
-      <router-link to="/shopbag">
-        <a class="navigation_buttons-save" @click="saveData">Save</a>
+      <router-link to="/shopbag" class="navigation_buttons-save" @click="saveData">
+        Save
       </router-link>
     </div>
 </template>
