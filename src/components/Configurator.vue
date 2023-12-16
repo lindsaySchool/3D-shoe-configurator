@@ -56,9 +56,9 @@ const handleDataSaved = (data) =>{
 </template>
 
 <style scoped>
-main.moderator{
+/* main.moderator{
   overflow: hidden;
-}
+} */
 .moderator[data-v-7a7a37b1] {
   display: flex;
   flex-wrap: wrap;
