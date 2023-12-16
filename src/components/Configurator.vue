@@ -70,6 +70,7 @@ const handleDataSaved = (data) =>{
 
 .moderator__model {
   flex: 0 0 64%;
+  display: inline;
 }
 
 .moderator__form {
