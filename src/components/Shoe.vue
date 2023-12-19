@@ -198,7 +198,7 @@
     const aoTexture_textile = loader_textile.load('/textures/textile/Fabric_034_ambientOcclusion.jpg');
     const heightTexture_textile = loader_textile.load('/textures/textile/Fabric_034_height.png');
     const roughnessTexture_textile = loader_textile.load('/textures/textile/Fabric_034_roughness.jpg');
-    const baseColorTexture_textile = loader_textile.load('/textures/textile/Fabric_034_baseColor.jpg');
+    //const baseColorTexture_textile = loader_textile.load('/textures/textile/Fabric_034_baseColor.jpg');
     
     //create a material with the leather textures
     leatherMaterial = new THREE.MeshStandardMaterial({
@@ -211,7 +211,7 @@
 
     //create a material with the textile textures
     textileMaterial = new THREE.MeshStandardMaterial({
-      map: baseColorTexture_textile,
+      map: normalTexture_textile,
       aoMap: aoTexture_textile,
       displacementMap: heightTexture_textile,
       displacementScale: 0.1,
