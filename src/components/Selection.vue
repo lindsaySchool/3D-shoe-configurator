@@ -99,9 +99,9 @@ async function postData(url = '', data = {}) {
             <div class="material_leather__image"></div>
             <div class="material_leather__name">Leather</div>
           </div>
-          <div class="material_plastic"   :class="{ selected: isSelectedMaterial('plastic') }" @click="selectMaterial('plastic')">
-            <div class="material_plastic__image"></div>
-            <div class="material_plastic__name">Plastic</div>
+          <div class="material_textile"   :class="{ selected: isSelectedMaterial('textile') }" @click="selectMaterial('textile')">
+            <div class="material_textile__image"></div>
+            <div class="material_textile__name">Textile</div>
           </div>
           <div class="material_rubber"  :class="{ selected: isSelectedMaterial('rubber') }" @click="selectMaterial('rubber')">
             <div class="material_rubber__image"></div>
@@ -149,7 +149,7 @@ async function postData(url = '', data = {}) {
   gap: 20px;
 }
 .material .material_leather, 
-.material .material_plastic, 
+.material .material_textile, 
 .material .material_rubber{
   display: flex;
   flex-direction: row;
@@ -159,12 +159,12 @@ async function postData(url = '', data = {}) {
   padding: 8px;
 }
 .material .material_leather div, 
-.material .material_plastic div, 
+.material .material_textile div, 
 .material .material_rubber div{
   margin-bottom: 0;
 }
 .material .material_leather__image, 
-.material .material_plastic__image, 
+.material .material_textile__image, 
 .material .material_rubber__image{
   width: 20px;
   height: 20px;
@@ -172,14 +172,14 @@ async function postData(url = '', data = {}) {
 .material .material_leather__image{
   background-color: #D9E497;
 }
-.material .material_plastic__image{
+.material .material_textile__image{
   background-color: #449BA0;
 }
 .material .material_rubber__image{
   background-color: #B63A3A;
 }
 .material .material_leather__name,
-.material .material_plastic__name,
+.material .material_textile__name,
 .material .material_rubber__name{
   text-transform: uppercase;
   font-size: 14px;
