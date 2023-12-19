@@ -84,12 +84,12 @@ async function postData(url = '', data = {}) {
     <div class="moderator__shoe-type">
         <h2 class="moderator__shoe-type__title">AIR REV. NITRO S TRIPLE WHITE</h2>
         <div class="moderator__shoe-type__part">
-          <div :class="{ selected: isSelectedPart('inside') }" @click="selectPart('inside')">inside</div>
-          <div :class="{ selected: isSelectedPart('laces') }" @click="selectPart('laces')">laces</div>
-          <div :class="{ selected: isSelectedPart('outside_1') }" @click="selectPart('outside_1')">outside_01</div>
-          <div :class="{ selected: isSelectedPart('outside_2') }" @click="selectPart('outside_2')">outside_2/3</div>
-          <div :class="{ selected: isSelectedPart('sole_top') }" @click="selectPart('sole_top')">sole_top</div>
-          <div :class="{ selected: isSelectedPart('sole_bottom') }" @click="selectPart('sole_bottom')">sole_bottom</div>
+          <div :class="{ selected: isSelectedPart('inside') }" @click="selectPart('inside')"><img src="../assets/cover_inside.png" alt="inside"></div>
+          <div :class="{ selected: isSelectedPart('laces') }" @click="selectPart('laces')"><img src="../assets/cover_laces.png" alt="laces"></div>
+          <div :class="{ selected: isSelectedPart('outside_1') }" @click="selectPart('outside_1')"><img src="../assets/cover_top.png" alt="top"></div>
+          <div :class="{ selected: isSelectedPart('outside_2') }" @click="selectPart('outside_2')"><img src="../assets/cover_outside.png" alt="outside"></div>
+          <div :class="{ selected: isSelectedPart('sole_top') }" @click="selectPart('sole_top')"><img src="../assets/cover_back.png" alt="back"></div>
+          <div :class="{ selected: isSelectedPart('sole_bottom') }" @click="selectPart('sole_bottom')"><img src="../assets/cover_sole.png" alt="sole"></div>
         </div>
     </div>
     <div class="moderator__material-type">
@@ -209,7 +209,11 @@ async function postData(url = '', data = {}) {
 .moderator__shoe-type__part div{
   border: 1px solid #D9D9D9;
   margin-bottom: 0;
-  padding: 8px;
+  max-height: 64px;
+}
+.moderator__shoe-type__part div img{
+  max-height: 64px;
+
 }
 
 .color_type__selection{
