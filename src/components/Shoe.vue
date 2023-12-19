@@ -278,7 +278,7 @@
     //add plane
     const planeGeometry = new THREE.PlaneGeometry(100, 100, 32);
     const planeMaterial = new THREE.MeshStandardMaterial({
-      color: 0xF5F5F5,
+      color: 0x74747f,
       side: THREE.DoubleSide
     });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
