@@ -90,6 +90,9 @@
             case 'textile':
               newMaterial = textileMaterial.clone();
               break;
+            case 'polyester':
+              newMaterial = polyesterMaterial.clone();
+              break;
             default:
               child.material = new THREE.MeshStandardMaterial({});
               break;
@@ -200,6 +203,13 @@
     const roughnessTexture_textile = loader_textile.load('/textures/textile/Fabric_034_roughness.jpg');
     //const baseColorTexture_textile = loader_textile.load('/textures/textile/Fabric_034_baseColor.jpg');
     
+    //loader textures from public folder polyester
+    const loader_polyester = new THREE.TextureLoader();
+    const normalTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_normal.jpg');
+    const aoTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_ambientOcclusion.jpg');
+    const heightTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_height.png');
+    const roughnessTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_roughness.jpg');
+
     //create a material with the leather textures
     leatherMaterial = new THREE.MeshStandardMaterial({
       map: normalTexture_leather,
@@ -216,6 +226,15 @@
       displacementMap: heightTexture_textile,
       displacementScale: 0.1,
       roughnessMap: roughnessTexture_textile,
+    });
+
+    //create a material with the polyester textures
+    polyesterMaterial = new THREE.MeshStandardMaterial({
+      map: normalTexture_polyester,
+      aoMap: aoTexture_polyester,
+      displacementMap: heightTexture_polyester,
+      displacementScale: 0.1,
+      roughnessMap: roughnessTexture_polyester,
     });
     //add public models shoe.glb
     const loader = new GLTFLoader();
