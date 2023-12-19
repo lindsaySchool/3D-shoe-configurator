@@ -236,6 +236,20 @@
       displacementScale: 0.1,
       roughnessMap: roughnessTexture_polyester,
     });
+
+    //load cubemap from public folder /cubemap
+    const cubeTextureLoader = new THREE.CubeTextureLoader();
+    const environmentMapTexture = cubeTextureLoader.load([
+      '/cubemap/px.png',
+      '/cubemap/nx.png',
+      '/cubemap/py.png',
+      '/cubemap/ny.png',
+      '/cubemap/pz.png',
+      '/cubemap/nz.png',
+    ]);
+
+    //add cubemap to scene
+    scene.background = environmentMapTexture;
     //add public models shoe.glb
     const loader = new GLTFLoader();
     loader.load('/models/shoe.glb', function(gltf) {
