@@ -80,6 +80,7 @@ const handleDataSaved = (data) =>{
   justify-content: space-between;
   padding: 0 1rem;
   float: right;
+  min-width: 32vw;
 }
 
 @media (max-width: 768px) {
