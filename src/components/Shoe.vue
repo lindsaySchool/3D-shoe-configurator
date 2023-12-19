@@ -205,10 +205,10 @@
     
     //loader textures from public folder polyester
     const loader_polyester = new THREE.TextureLoader();
-    const normalTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_normal.jpg');
-    const aoTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_ambientOcclusion.jpg');
-    const heightTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_height.png');
-    const roughnessTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyestr_001_roughness.jpg');
+    const normalTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_normal.jpg');
+    const aoTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_ambientOcclusion.jpg');
+    const heightTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_height.png');
+    const roughnessTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_roughness.jpg');
 
     //create a material with the leather textures
     leatherMaterial = new THREE.MeshStandardMaterial({
