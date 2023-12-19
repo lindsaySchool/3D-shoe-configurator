@@ -103,9 +103,9 @@ async function postData(url = '', data = {}) {
             <div class="material_textile__image"></div>
             <div class="material_textile__name">Textile</div>
           </div>
-          <div class="material_rubber"  :class="{ selected: isSelectedMaterial('rubber') }" @click="selectMaterial('rubber')">
-            <div class="material_rubber__image"></div>
-            <div class="material_rubber__name">Rubber</div>
+          <div class="material_polyester"  :class="{ selected: isSelectedMaterial('polyester') }" @click="selectMaterial('polyester')">
+            <div class="material_polyester__image"></div>
+            <div class="material_polyester__name">Polyester</div>
           </div>
         </div>
     </div>
@@ -150,7 +150,7 @@ async function postData(url = '', data = {}) {
 }
 .material .material_leather, 
 .material .material_textile, 
-.material .material_rubber{
+.material .material_polyester{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -160,12 +160,12 @@ async function postData(url = '', data = {}) {
 }
 .material .material_leather div, 
 .material .material_textile div, 
-.material .material_rubber div{
+.material .material_polyester div{
   margin-bottom: 0;
 }
 .material .material_leather__image, 
 .material .material_textile__image, 
-.material .material_rubber__image{
+.material .material_polyester__image{
   width: 20px;
   height: 20px;
 }
@@ -175,12 +175,12 @@ async function postData(url = '', data = {}) {
 .material .material_textile__image{
   background-color: #449BA0;
 }
-.material .material_rubber__image{
+.material .material_polyester__image{
   background-color: #B63A3A;
 }
 .material .material_leather__name,
 .material .material_textile__name,
-.material .material_rubber__name{
+.material .material_polyester__name{
   text-transform: uppercase;
   font-size: 14px;
   color: #000;
