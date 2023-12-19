@@ -71,9 +71,13 @@
       }
     }
   };
+  //Define leather material
   let leatherMaterial;
-  //TODO: define plastic material
-  //TODO: define rubber material
+  //Define textile material
+  let textileMaterial;
+  //Define rubber material
+  let polyesterMaterial;
+
   const applyMaterial = (part, material, color) => {
     if (shoe) {
       shoe.traverse((child) => {
@@ -82,6 +86,12 @@
           switch (material) {
             case 'leather':
               newMaterial = leatherMaterial.clone();
+              break;
+            case 'textile':
+              newMaterial = textileMaterial.clone();
+              break;
+            case 'polyester':
+              newMaterial = polyesterMaterial.clone();
               break;
             default:
               child.material = new THREE.MeshStandardMaterial({});
@@ -173,22 +183,58 @@
     renderer.setSize(window.innerWidth * Math.PI / 2, window.innerHeight * Math.PI / 4);
     renderer.shadowMap.enabled = true;
     canvasContainer.value.appendChild(renderer.domElement);
+
     /*  //add axis helper
      const axesHelper = new AxesHelper( 5 );
      scene.add( axesHelper ); */
+
     //load textures from public folder leather
     const loader_leather = new THREE.TextureLoader();
-    const normalTexture = loader_leather.load('/textures/leather/Leather_011_normal.jpg');
-    const aoTexture = loader_leather.load('/textures/leather/Leather_011_ambientOcclusion.jpg');
-    const heightTexture = loader_leather.load('/textures/leather/Leather_011_height.png');
-    const roughnessTexture = loader_leather.load('/textures/leather/Leather_011_roughness.jpg');
+    const normalTexture_leather = loader_leather.load('/textures/leather/Leather_011_normal.jpg');
+    const aoTexture_leather = loader_leather.load('/textures/leather/Leather_011_ambientOcclusion.jpg');
+    const heightTexture_leather = loader_leather.load('/textures/leather/Leather_011_height.png');
+    const roughnessTexture_leather = loader_leather.load('/textures/leather/Leather_011_roughness.jpg');
+    
+    //load textures from public folder textile
+    const loader_textile = new THREE.TextureLoader();
+    const normalTexture_textile = loader_textile.load('/textures/textile/Fabric_034_normal.jpg');
+    const aoTexture_textile = loader_textile.load('/textures/textile/Fabric_034_ambientOcclusion.jpg');
+    const heightTexture_textile = loader_textile.load('/textures/textile/Fabric_034_height.png');
+    const roughnessTexture_textile = loader_textile.load('/textures/textile/Fabric_034_roughness.jpg');
+    //const baseColorTexture_textile = loader_textile.load('/textures/textile/Fabric_034_baseColor.jpg');
+    
+    //loader textures from public folder polyester
+    const loader_polyester = new THREE.TextureLoader();
+    const normalTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_normal.jpg');
+    const aoTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_ambientOcclusion.jpg');
+    const heightTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_height.png');
+    const roughnessTexture_polyester = loader_polyester.load('/textures/polyester/Fabric_polyester_001_roughness.jpg');
+
     //create a material with the leather textures
     leatherMaterial = new THREE.MeshStandardMaterial({
-      map: normalTexture,
-      aoMap: aoTexture,
-      displacementMap: heightTexture,
+      map: normalTexture_leather,
+      aoMap: aoTexture_leather,
+      displacementMap: heightTexture_leather,
       displacementScale: 0.1,
-      roughnessMap: roughnessTexture,
+      roughnessMap: roughnessTexture_leather,
+    });
+
+    //create a material with the textile textures
+    textileMaterial = new THREE.MeshStandardMaterial({
+      map: normalTexture_textile,
+      aoMap: aoTexture_textile,
+      displacementMap: heightTexture_textile,
+      displacementScale: 0.1,
+      roughnessMap: roughnessTexture_textile,
+    });
+
+    //create a material with the polyester textures
+    polyesterMaterial = new THREE.MeshStandardMaterial({
+      map: normalTexture_polyester,
+      aoMap: aoTexture_polyester,
+      displacementMap: heightTexture_polyester,
+      displacementScale: 0.1,
+      roughnessMap: roughnessTexture_polyester,
     });
     //add public models shoe.glb
     const loader = new GLTFLoader();
@@ -226,8 +272,12 @@
     plane.rotation.x = Math.PI / -2;
     plane.position.y = 0.98;
     scene.add(plane);
+
+    //CAMERA
     camera.position.z = 3;
     camera.position.y = 2;
+
+    //LIGHTS
     //add ambientlight
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
